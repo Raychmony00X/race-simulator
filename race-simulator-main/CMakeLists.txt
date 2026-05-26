@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.22.0)
+project(RaceSimulator)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+add_library(RaceSimulatorDynamicLib SHARED GroundTransport.cpp Camel.cpp FastCamel.cpp Centaur.cpp
+Boots.cpp AirTransport.cpp FlyingCarpet.cpp Eagle.cpp Broom.cpp Functions.cpp)
+target_include_directories(RaceSimulatorDynamicLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+add_executable(RaceSimulatorMain RaceSimulatorMain.cpp)
+target_include_directories(RaceSimulatorMain PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(RaceSimulatorMain PRIVATE RaceSimulatorDynamicLib)
